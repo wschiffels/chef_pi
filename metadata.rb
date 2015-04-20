@@ -1,0 +1,7 @@
+name             'chef_pi'
+maintainer       'me'
+maintainer_email 'me@me'
+license          'WTFPL'
+description      'Installs/configures raspberry pi with owncloud'
+version          '0.0.1'
+recipe           'chef_pi::default', 'Installs/configures raspberry pi'
