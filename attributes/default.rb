@@ -14,7 +14,7 @@ default['chef_pi']['additional_packages'] = [
 ]
 
 # <> Owncloud attributes
-default['chef_pi']['ngix']['server-name'] = 'example.com'
-default['chef_pi']['ngix']['ssl-cert'] = 'server.crt'
-default['chef_pi']['ngix']['ssl-key'] = 'server.key'
-default['chef_pi']['ngix']['oc-root'] = '/var/www/owncloud'
+default['chef_pi']['nginx']['server-name'] = 'example.com'
+default['chef_pi']['nginx']['ssl-cert'] = 'server.crt'
+default['chef_pi']['nginx']['ssl-key'] = 'server.key'
+default['chef_pi']['nginx']['oc-root'] = '/var/www/owncloud'
