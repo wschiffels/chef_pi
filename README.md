@@ -22,7 +22,7 @@ Installs/configures raspberry pi with owncloud
 
 # Recipes
 
-* [chef_pi::default](#chef_pidefault) - Installs/configures raspberry pi
+* [chef_pi::default](#chef_pidefault) - highly unusable test thing
 
 ## chef_pi::default
 
