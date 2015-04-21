@@ -1,0 +1,33 @@
+I, [2015-04-21T21:04:44.226966 #47679]  INFO -- Kitchen: -----> Starting Kitchen (v1.2.1)
+E, [2015-04-21T21:04:44.227472 #47679] ERROR -- Kitchen: 
+No instances for regex `', try running `kitchen list'
+
+
+E, [2015-04-21T21:04:57.050405 #47732] ERROR -- Kitchen: 
+No instances for regex `', try running `kitchen list'
+
+
+E, [2015-04-21T21:05:02.432868 #47783] ERROR -- Kitchen: 
+No instances for regex `', try running `kitchen list'
+
+
+I, [2015-04-21T21:06:03.473170 #48064]  INFO -- Kitchen: -----> Starting Kitchen (v1.2.1)
+I, [2015-04-21T21:06:03.952129 #48064]  INFO -- Kitchen: -----> Cleaning up any prior instances of <default-centos-65>
+I, [2015-04-21T21:06:03.952309 #48064]  INFO -- Kitchen: -----> Destroying <default-centos-65>...
+I, [2015-04-21T21:06:03.963297 #48064]  INFO -- Kitchen: -----> Testing <default-centos-65>
+I, [2015-04-21T21:06:03.963456 #48064]  INFO -- Kitchen: -----> Creating <default-centos-65>...
+I, [2015-04-21T21:06:48.604539 #48064]  INFO -- Kitchen: -----> Converging <default-centos-65>...
+E, [2015-04-21T21:07:36.389455 #48064] ERROR -- Kitchen: Converge failed on instance <default-centos-65>.
+I, [2015-04-21T21:09:50.941227 #48968]  INFO -- Kitchen: -----> Starting Kitchen (v1.2.1)
+I, [2015-04-21T21:09:51.424148 #48968]  INFO -- Kitchen: -----> Converging <default-centos-65>...
+E, [2015-04-21T21:11:04.923138 #48968] ERROR -- Kitchen: Converge failed on instance <default-centos-65>.
+I, [2015-04-21T21:12:59.352885 #49654]  INFO -- Kitchen: -----> Starting Kitchen (v1.2.1)
+I, [2015-04-21T21:13:00.315320 #49654]  INFO -- Kitchen: -----> Destroying <default-centos-65>...
+I, [2015-04-21T21:13:04.199236 #49654]  INFO -- Kitchen: -----> Kitchen is finished. (0m4.85s)
+I, [2015-04-21T21:13:41.570321 #49941]  INFO -- Kitchen: -----> Starting Kitchen (v1.2.1)
+I, [2015-04-21T21:13:42.048984 #49941]  INFO -- Kitchen: -----> Cleaning up any prior instances of <default-ubuntu-1204>
+I, [2015-04-21T21:13:42.049157 #49941]  INFO -- Kitchen: -----> Destroying <default-ubuntu-1204>...
+I, [2015-04-21T21:13:42.058276 #49941]  INFO -- Kitchen: -----> Testing <default-ubuntu-1204>
+I, [2015-04-21T21:13:42.058502 #49941]  INFO -- Kitchen: -----> Creating <default-ubuntu-1204>...
+I, [2015-04-21T21:18:59.601080 #49941]  INFO -- Kitchen: -----> Converging <default-ubuntu-1204>...
+E, [2015-04-21T21:20:49.954919 #49941] ERROR -- Kitchen: Converge failed on instance <default-ubuntu-1204>.

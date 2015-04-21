@@ -1,0 +1,13 @@
+DEPENDENCIES
+  chef_pi
+    path: .
+    metadata: true
+
+GRAPH
+  apt (2.7.0)
+  chef_pi (0.0.1)
+    mysqld (>= 0.0.0)
+  mysqld (1.0.1)
+    apt (>= 0.0.0)
+    yum (>= 0.0.0)
+  yum (3.5.4)

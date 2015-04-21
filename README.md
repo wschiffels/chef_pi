@@ -10,7 +10,7 @@ unusable test thing
 
 ## Cookbooks:
 
-*No dependencies defined*
+* mysqld
 
 # Attributes
 

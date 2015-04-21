@@ -29,6 +29,8 @@ end
 # install additional packages
 #>
 
+include_recipe 'mysqld'
+
 node['chef_pi']['additional_packages'].each do |p|
   package p do
     action :upgrade

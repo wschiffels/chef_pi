@@ -9,8 +9,7 @@ default['chef_pi']['additional_packages'] = [
   'php5-common',
   'nginx-common',
   'php5-fpm',
-  'php5-mysql',
-  'mysql-server'
+  'php5-mysql'
 ]
 
 # <> Owncloud attributes
