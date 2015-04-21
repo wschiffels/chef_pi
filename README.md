@@ -1,6 +1,6 @@
 # Description
 
-Installs/configures raspberry pi with owncloud
+unusable test thing
 
 # Requirements
 
