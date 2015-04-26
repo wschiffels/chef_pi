@@ -11,11 +11,15 @@ unusable test thing
 ## Cookbooks:
 
 * mysqld
+* nginx
+* openssl
 
 # Attributes
 
 * `node['chef_pi']['additional_packages']` -  Defaults to `[ ... ]`.
-* `node['chef_pi']['nginx']['server-name']` -  Defaults to `example.com`.
+* `node['nginx']['version']` - nginx things. Defaults to `1.8.0`.
+* `node['chef_pi']['nginx']['server-name']` -  Defaults to `foo.example.com`.
+* `node['chef_pi']['nginx']['cert-path']` -  Defaults to `/etc/ssl/certs`.
 * `node['chef_pi']['nginx']['ssl-cert']` -  Defaults to `server.crt`.
 * `node['chef_pi']['nginx']['ssl-key']` -  Defaults to `server.key`.
 * `node['chef_pi']['nginx']['oc-root']` -  Defaults to `/var/www/owncloud`.
@@ -28,7 +32,12 @@ unusable test thing
 
 motd stuff
 
-install additional packages
+install additional things
+
+clean apt-cache before installing additional stuff
+include recipies
+create certificate
+nginx vhost
 
 # License and Maintainer
 

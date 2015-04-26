@@ -1,12 +1,18 @@
 ---
 driver:
   name: vagrant
+  customize:
+    memory: 4096
+    cpus: 2
+  network:
+    - ["forwarded_port", {guest: 80, host: 8080}]
+    - ["forwarded_port", {guest: 443, host: 4433}]
 
 provisioner:
   name: chef_solo
 
 platforms:
-  - name: ubuntu-12.04
+  - name: debian-7.8
 #  - name: centos-6.5
 
 suites:
