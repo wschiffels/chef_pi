@@ -4,10 +4,10 @@
 #
 
 # <
-# motd stuff
+# unrelated stuff
 # >
 
-# delete if exists
+# <> motd
 file '/var/run/motd' do
   action :delete
   only_if { File.exist?('/var/run/motd') }
@@ -15,7 +15,7 @@ end
 
 link '/etc/motd' do
   action :delete
-  only_if { File.symlink?('/etc/motd') }
+  only_if { ::File.symlink?('/etc/motd') }
 end
 
 template '/etc/motd' do
@@ -23,6 +23,15 @@ template '/etc/motd' do
   owner 'root'
   group 'root'
   mode '0644'
+end
+
+# <> aliases
+template '/etc/profile.d/aliases.sh' do
+  source 'aliases.erb'
+  owner 'root'
+  group 'root'
+  mode 0755
+  not_if { ::File.exist?('/etc/profile.d/aliases.sh') }
 end
 
 # <
@@ -36,9 +45,16 @@ execute 'update cache' do
   not_if { ::File.exist?('/var/lib/apt/periodic/update-success-stamp') }
 end
 
+node['chef_pi']['additional_packages'].each do |p|
+  package p do
+    action :install
+  end
+end
+
 # <> include recipies
 include_recipe 'mysqld'
 include_recipe 'nginx'
+include_recipe 'php-fpm'
 include_recipe 'openssl'
 
 # <> create certificate

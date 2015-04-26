@@ -5,6 +5,8 @@
 
 # <> additional packages
 default['chef_pi']['additional_packages'] = [
+  'vim',
+  'vim-common'
 ]
 
 # <> nginx things
