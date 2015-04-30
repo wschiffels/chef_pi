@@ -18,3 +18,7 @@ default['chef_pi']['nginx']['cert-path'] = '/etc/ssl/certs'
 default['chef_pi']['nginx']['ssl-cert'] = 'server.crt'
 default['chef_pi']['nginx']['ssl-key'] = 'server.key'
 default['chef_pi']['nginx']['oc-root'] = '/var/www/owncloud'
+
+# <> owncloud things
+default['chef_pi']['oc']['url'] = 'https://download.owncloud.org/community/'
+default['chef_pi']['oc']['version'] = 'owncloud-8.0.2.tar.bz2'

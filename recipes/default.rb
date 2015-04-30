@@ -57,6 +57,24 @@ include_recipe 'nginx'
 include_recipe 'php-fpm'
 include_recipe 'openssl'
 
+# <> download owncloud
+remote_file "#{Chef::Config[:file_cache_path]}/#{node['chef_pi']['oc']['version']}" do
+  source "#{node['chef_pi']['oc']['url']}/#{node['chef_pi']['oc']['version']}"
+  owner 'root'
+  group 'root'
+  mode '755'
+  not_if { ::File.exist?("#{Chef::Config[:file_cache_path]}/node['chef_pi']['oc']['version']") }
+  notifies :run, "bash[unpack owncloud]", :immediately
+end
+
+bash 'unpack owncloud' do
+  code <<-EOH
+    mkdir -p /var/www/
+    tar xjf #{Chef::Config[:file_cache_path]}/#{node['chef_pi']['oc']['version']} -C /var/www/
+  EOH
+  #not_if { ::File.exists?('/var/www/owncloud') }
+end
+
 # <> create certificate
 openssl_x509 "/etc/ssl/#{node['chef_pi']['nginx']['ssl-cert']}" do
   common_name "#{node['chef_pi']['nginx']['server-name']}"
@@ -66,10 +84,18 @@ openssl_x509 "/etc/ssl/#{node['chef_pi']['nginx']['ssl-cert']}" do
   not_if { ::File.exist?("/etc/ssl/#{node['chef_pi']['nginx']['ssl-cert']}") }
 end
 
-# <> nginx vhost
-template '/etc/nginx/sites-available/default' do
+# <> create nginx vhost
+template '/etc/nginx/sites-available/owncloud' do
   source 'nginx_oc.erb'
   owner 'root'
   group 'root'
   mode '0644'
+  not_if { ::File.exist?('/etc/nginx/sites-available/owncloud') }
+end
+
+#<> activate vhost
+link '/etc/nginx/sites-enabled/owncloud' do
+  to '/etc/nginx/sites-available/owncloud'
+  not_if { ::File.exist?('/etc/nginx/sites-enabled/owncloud') }
+  notifies :reload, 'service[nginx]', :immediately
 end
