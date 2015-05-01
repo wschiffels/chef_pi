@@ -8,7 +8,7 @@ $CONFIG = array (
   array (
     0 => '<%= node['chef_pi']['nginx']['server-name'] %>'
   ),
-  'datadirectory' => '<%= node['chef_pi']['nginx']['oc-root']/data %>',
+  'datadirectory' => '<%= node['chef_pi']['nginx']['oc-root']%>/data ',
   'overwrite.cli.url' => 'https://<%= node['chef_pi']['nginx']['server-name'] %>:4433',
   'dbtype' => 'mysql',
   'version' => '<%= node['chef_pi']['oc']['version'] %>',
