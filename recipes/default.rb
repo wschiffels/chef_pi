@@ -3,99 +3,40 @@
 # Recipe:: default
 #
 
-# <
-# unrelated stuff
-# >
-
-# <> motd
-file '/var/run/motd' do
-  action :delete
-  only_if { File.exist?('/var/run/motd') }
-end
-
-link '/etc/motd' do
-  action :delete
-  only_if { ::File.symlink?('/etc/motd') }
-end
-
-template '/etc/motd' do
-  source 'motd.erb'
-  owner 'root'
-  group 'root'
-  mode '0644'
-end
-
-# <> aliases
-template '/etc/profile.d/aliases.sh' do
-  source 'aliases.erb'
-  owner 'root'
-  group 'root'
-  mode 0755
-  not_if { ::File.exist?('/etc/profile.d/aliases.sh') }
-end
-
-# <
-# install additional things
-# >
-
-# <> clean apt-cache before installing additional stuff
-execute 'update cache' do
-  command 'apt-get clean && apt-get update'
-  ignore_failure true
-  not_if { ::File.exist?('/var/lib/apt/periodic/update-success-stamp') }
-end
-
-node['chef_pi']['additional_packages'].each do |p|
-  package p do
-    action :install
-  end
-end
-
-# <> include recipies
-include_recipe 'mysqld'
-include_recipe 'nginx'
-include_recipe 'php-fpm'
-include_recipe 'openssl'
+# <> includes
+include_recipe 'chef_pi::_stuff'
+include_recipe 'chef_pi::_packages'
+include_recipe 'chef_pi::_nginx'
+include_recipe 'chef_pi::_database'
 
 # <> download owncloud
-remote_file "#{Chef::Config[:file_cache_path]}/#{node['chef_pi']['oc']['version']}" do
-  source "#{node['chef_pi']['oc']['url']}/#{node['chef_pi']['oc']['version']}"
-  owner 'root'
-  group 'root'
-  mode '755'
-  not_if { ::File.exist?("#{Chef::Config[:file_cache_path]}/node['chef_pi']['oc']['version']") }
+remote_file "#{Chef::Config[:file_cache_path]}/#{node['chef_pi']['oc']['filename']}" do
+  source "#{node['chef_pi']['oc']['url']}/#{node['chef_pi']['oc']['filename']}"
+  not_if { ::File.exist?("#{Chef::Config[:file_cache_path]}/node['chef_pi']['oc']['filename']") }
   notifies :run, "bash[unpack owncloud]", :immediately
 end
 
 bash 'unpack owncloud' do
   code <<-EOH
-    mkdir -p /var/www/
-    tar xjf #{Chef::Config[:file_cache_path]}/#{node['chef_pi']['oc']['version']} -C /var/www/
+    mkdir -p #{node['chef_pi']['nginx']['root']}
+    tar xjf #{Chef::Config[:file_cache_path]}/#{node['chef_pi']['oc']['filename']} -C #{node['chef_pi']['nginx']['root']}
+    chown -R #{node['chef_pi']['nginx']['user']}:#{node['chef_pi']['nginx']['group']} #{node['chef_pi']['nginx']['oc-root']}
   EOH
-  #not_if { ::File.exists?('/var/www/owncloud') }
+  not_if { ::File.exists?("#{node['chef_pi']['nginx']['oc-root']}") }
 end
 
-# <> create certificate
-openssl_x509 "/etc/ssl/#{node['chef_pi']['nginx']['ssl-cert']}" do
-  common_name "#{node['chef_pi']['nginx']['server-name']}"
-  org 'Foo Bar'
-  org_unit 'Lab'
-  country 'DE'
-  not_if { ::File.exist?("/etc/ssl/#{node['chef_pi']['nginx']['ssl-cert']}") }
-end
-
-# <> create nginx vhost
-template '/etc/nginx/sites-available/owncloud' do
-  source 'nginx_oc.erb'
-  owner 'root'
-  group 'root'
+# <> configure owncloud
+template "#{node['chef_pi']['nginx']['oc-root']}/config/config.php" do
+  source 'config.php.erb'
+  owner node['chef_pi']['nginx']['user']
+  group node['chef_pi']['nginx']['group']
   mode '0644'
-  not_if { ::File.exist?('/etc/nginx/sites-available/owncloud') }
+  not_if { ::File.exists?("#{node['chef_pi']['nginx']['oc-root']}/config/config.php") }
 end
 
-#<> activate vhost
-link '/etc/nginx/sites-enabled/owncloud' do
-  to '/etc/nginx/sites-available/owncloud'
-  not_if { ::File.exist?('/etc/nginx/sites-enabled/owncloud') }
-  notifies :reload, 'service[nginx]', :immediately
+directory '/var/www/owncloud/data' do
+  owner node['chef_pi']['nginx']['user']
+  group node['chef_pi']['nginx']['group']
+  mode '0755'
+  action :create
 end
