@@ -34,12 +34,3 @@ bash 'base grants' do
     mysql < /tmp/grants.sql
   EOH
 end
-
-# <> this....
-#require 'digest/sha1'
-#
-#def hash_mysql_password pass
-#  "*" + Digest::SHA1.hexdigest(Digest::SHA1.digest(pass)).upcase
-#end
-#
-#hash_mysql_password 'foo'
