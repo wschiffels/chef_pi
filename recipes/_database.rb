@@ -19,14 +19,14 @@ template '/tmp/oc.dump' do
   group 'root'
   mode '0644'
   not_if { ::File.exist?('/tmp/oc.dump') }
-  notifies :run, "bash[initialize oc database]", :immediately
+  notifies :run, 'bash[initialize oc database]', :immediately
 end
 
 bash 'initialize oc database' do
   code <<-EOH
     mysql < /tmp/oc.dump
   EOH
-    notifies :run, "bash[base grants]", :immediately
+    notifies :run, 'bash[base grants]', :immediately
 end
 
 bash 'base grants' do

@@ -9,7 +9,7 @@ include_recipe 'php-fpm'
 
 # <> create self signed SSL certificate
 openssl_x509 "/etc/ssl/#{node['chef_pi']['nginx']['ssl-cert']}" do
-  common_name "#{node['chef_pi']['nginx']['server-name']}"
+  common_name node['chef_pi']['nginx']['server-name']
   org node['chef_pi']['nginx']['certificate']['org']
   org_unit node['chef_pi']['nginx']['certificate']['unit']
   country node['chef_pi']['nginx']['certificate']['country']

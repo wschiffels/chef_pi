@@ -12,7 +12,7 @@ default['chef_pi']['additional_packages'] = [
   'php5-fpm',
   'php5-gd',
   'php5-intl',
-  'php5-mysql',
+  'php5-mysql'
 ]
 
 # <> nginx upstream things
