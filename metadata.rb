@@ -7,6 +7,7 @@ version '0.0.1'
 recipe 'chef_pi::default', 'highly unusable test thing'
 
 depends 'mysqld'
+depends 'database'
 depends 'nginx'
 depends 'openssl'
 depends 'php-fpm'
