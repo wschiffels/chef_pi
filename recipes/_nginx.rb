@@ -25,7 +25,7 @@ template '/etc/nginx/sites-available/owncloud' do
   not_if { ::File.exist?('/etc/nginx/sites-available/owncloud') }
 end
 
-#<> activate vhost
+# <> activate vhost
 link '/etc/nginx/sites-enabled/owncloud' do
   to '/etc/nginx/sites-available/owncloud'
   not_if { ::File.exist?('/etc/nginx/sites-enabled/owncloud') }

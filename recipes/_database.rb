@@ -26,7 +26,7 @@ bash 'initialize oc database' do
   code <<-EOH
     mysql < /tmp/oc.dump
   EOH
-    notifies :run, 'bash[base grants]', :immediately
+  notifies :run, 'bash[base grants]', :immediately
 end
 
 bash 'base grants' do

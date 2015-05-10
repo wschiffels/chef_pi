@@ -22,7 +22,7 @@ bash 'unpack owncloud' do
     tar xjf #{Chef::Config[:file_cache_path]}/#{node['chef_pi']['oc']['filename']} -C #{node['chef_pi']['nginx']['root']}
     chown -R #{node['chef_pi']['nginx']['user']}:#{node['chef_pi']['nginx']['group']} #{node['chef_pi']['nginx']['oc-root']}
   EOH
-  not_if { ::File.exist?("#{node['chef_pi']['nginx']['oc-root']}") }
+  not_if { ::File.exist?(node['chef_pi']['nginx']['oc-root']) }
 end
 
 # <> configure owncloud

@@ -29,4 +29,3 @@ RSpec.configure do |config| # rubocop:disable UnusedBlockArgument
 end
 
 at_exit { ChefSpec::Coverage.report! }
-
