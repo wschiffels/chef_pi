@@ -16,6 +16,13 @@ openssl_x509 "/etc/ssl/#{node['chef_pi']['nginx']['ssl-cert']}" do
   not_if { ::File.exist?("/etc/ssl/#{node['chef_pi']['nginx']['ssl-cert']}") }
 end
 
+#<> and for ssl_dhparam
+execute 'create dhparams.pem' do
+  command 'openssl dhparam -out /etc/ssl/private/dhparams.pem 2048'
+  creates '/etc/ssl/private/dhparams.pem'
+  action :run
+end
+
 # <> create nginx vhost
 template '/etc/nginx/sites-available/owncloud' do
   source 'nginx_oc.erb'
