@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chef_pi
+# Cookbook Name:: ownberry
 # Recipe:: _packages
 #
 
@@ -14,7 +14,7 @@ execute 'update cache' do
   not_if { ::File.exist?('/var/lib/apt/periodic/update-success-stamp') }
 end
 
-node['chef_pi']['additional_packages'].each do |p|
+node['ownberry']['additional_packages'].each do |p|
   package p do
     action :install
   end

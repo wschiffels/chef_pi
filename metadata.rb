@@ -1,10 +1,10 @@
-name 'chef_pi'
+name 'ownberry'
 maintainer 'me'
 maintainer_email 'me@me'
 license 'WTFPL'
 description 'unusable test thing'
 version '0.0.1'
-recipe 'chef_pi::default', 'highly unusable test thing'
+recipe 'ownberry::default', 'highly unusable test thing'
 
 depends 'mysqld'
 depends 'nginx'

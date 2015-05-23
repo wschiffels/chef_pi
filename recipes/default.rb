@@ -1,15 +1,15 @@
 #
-# Cookbook Name:: chef_pi
+# Cookbook Name:: ownberry
 # Recipe:: default
 #
 
 # <> common things
-include_recipe 'chef_pi::_stuff'
+include_recipe 'ownberry::_stuff'
 # <> additional packages
-include_recipe 'chef_pi::_packages'
+include_recipe 'ownberry::_packages'
 # <> install nginx
-include_recipe 'chef_pi::_nginx'
+include_recipe 'ownberry::_nginx'
 # <> setup mysql
-include_recipe 'chef_pi::_database'
+include_recipe 'ownberry::_database'
 # <> download/install/configure owncloud
-include_recipe 'chef_pi::_owncloud'
+include_recipe 'ownberry::_owncloud'

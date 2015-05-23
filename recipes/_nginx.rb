@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chef_pi
+# Cookbook Name:: ownberry
 # Recipe:: _nginx
 #
 
@@ -8,12 +8,12 @@ include_recipe 'openssl'
 include_recipe 'php-fpm'
 
 # <> create self signed SSL certificate
-openssl_x509 "/etc/ssl/#{node['chef_pi']['nginx']['ssl-cert']}" do
-  common_name node['chef_pi']['nginx']['server-name']
-  org node['chef_pi']['nginx']['certificate']['org']
-  org_unit node['chef_pi']['nginx']['certificate']['unit']
-  country node['chef_pi']['nginx']['certificate']['country']
-  not_if { ::File.exist?("/etc/ssl/#{node['chef_pi']['nginx']['ssl-cert']}") }
+openssl_x509 "/etc/ssl/#{node['ownberry']['nginx']['ssl-cert']}" do
+  common_name node['ownberry']['nginx']['server-name']
+  org node['ownberry']['nginx']['certificate']['org']
+  org_unit node['ownberry']['nginx']['certificate']['unit']
+  country node['ownberry']['nginx']['certificate']['country']
+  not_if { ::File.exist?("/etc/ssl/#{node['ownberry']['nginx']['ssl-cert']}") }
 end
 
 #<> and for ssl_dhparam

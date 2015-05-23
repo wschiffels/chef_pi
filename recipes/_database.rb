@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chef_pi
+# Cookbook Name:: ownberry
 # Recipe:: _database
 #
 # <> include upstream recipies
