@@ -41,15 +41,44 @@ installs nginx, php-fpm and owncloud. This is for testing only, though it should
 
 # Recipes
 
-* ownberry::default - includes all recipes
-* ownberry::_database - install mysql, setup oc database
+* [ownberry::default](#ownberrydefault) - includes all recipes
+* [ownberry::_database](#ownberry_database) - install mysql, setup oc database
 * [ownberry::_nginx](#ownberry_nginx) - install nginx, configure ov vhost, create self-signed certificate
-* ownberry::_packages - install additional packages
-* ownberry::_stuff - unrelated things
+* [ownberry::_packages](#ownberry_packages) - install additional packages
+* [ownberry::_stuff](#ownberry_stuff) - unrelated things
+
+## ownberry::default
+
+include common things
+include additional packages
+include install nginx
+include setup mysql
+download/install/configure owncloud
+
+## ownberry::_database
+
+include upstream recipies
+initial mysql grants and dump
+create oc.dump from template
+source oc.dump
+grant privileges
 
 ## ownberry::_nginx
 
+create self signed SSL certificate
 and for ssl_dhparam
+create nginx vhost
+activate vhost
+
+## ownberry::_packages
+
+clean apt-cache before installing additional stuff
+install additional packages
+
+## ownberry::_stuff
+
+edit motd
+set aliases
 
 # License and Maintainer
 

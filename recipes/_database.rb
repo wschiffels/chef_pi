@@ -2,10 +2,10 @@
 # Cookbook Name:: ownberry
 # Recipe:: _database
 #
-# <> include upstream recipies
+#<> include upstream recipies
 include_recipe 'mysqld'
 
-# <> initial mysql grants and dump
+#<> initial mysql grants and dump
 template '/tmp/grants.sql' do
   source 'grants.erb'
   owner 'root'
@@ -13,6 +13,7 @@ template '/tmp/grants.sql' do
   mode '0644'
 end
 
+#<> create oc.dump from template
 template '/tmp/oc.dump' do
   source 'oc.dump.erb'
   owner 'root'
@@ -22,6 +23,7 @@ template '/tmp/oc.dump' do
   notifies :run, 'bash[initialize oc database]', :immediately
 end
 
+#<> source oc.dump
 bash 'initialize oc database' do
   code <<-EOH
     mysql < /tmp/oc.dump
@@ -29,6 +31,7 @@ bash 'initialize oc database' do
   notifies :run, 'bash[base grants]', :immediately
 end
 
+#<> grant privileges
 bash 'base grants' do
   code <<-EOH
     mysql < /tmp/grants.sql

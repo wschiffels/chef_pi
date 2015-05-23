@@ -7,7 +7,7 @@ include_recipe 'nginx'
 include_recipe 'openssl'
 include_recipe 'php-fpm'
 
-# <> create self signed SSL certificate
+#<> create self signed SSL certificate
 openssl_x509 "/etc/ssl/#{node['ownberry']['nginx']['ssl-cert']}" do
   common_name node['ownberry']['nginx']['server-name']
   org node['ownberry']['nginx']['certificate']['org']
@@ -23,7 +23,7 @@ execute 'create dhparams.pem' do
   action :run
 end
 
-# <> create nginx vhost
+#<> create nginx vhost
 template '/etc/nginx/sites-available/owncloud' do
   source 'nginx_oc.erb'
   owner 'root'
@@ -32,7 +32,7 @@ template '/etc/nginx/sites-available/owncloud' do
   not_if { ::File.exist?('/etc/nginx/sites-available/owncloud') }
 end
 
-# <> activate vhost
+#<> activate vhost
 link '/etc/nginx/sites-enabled/owncloud' do
   to '/etc/nginx/sites-available/owncloud'
   not_if { ::File.exist?('/etc/nginx/sites-enabled/owncloud') }

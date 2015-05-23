@@ -7,7 +7,7 @@
 # some unrelated stuff
 # >
 
-# <> motd
+#<> edit motd
 file '/var/run/motd' do
   action :delete
   only_if { File.exist?('/var/run/motd') }
@@ -25,7 +25,7 @@ template '/etc/motd' do
   mode '0644'
 end
 
-# <> aliases
+#<> set aliases
 template '/etc/profile.d/aliases.sh' do
   source 'aliases.erb'
   owner 'root'
