@@ -37,15 +37,15 @@ describe 'ownberry::default' do
     expect(chef_run).to install_package('php5-common')
   end
 
-    it 'installes php5-cli' do
+  it 'installes php5-cli' do
     expect(chef_run).to install_package('php5-cli')
   end
 
-    it 'installes php5-curl' do
+  it 'installes php5-curl' do
     expect(chef_run).to install_package('php5-curl')
   end
 
-    it 'installes php5-fpm' do
+  it 'installes php5-fpm' do
     expect(chef_run).to install_package('php5-fpm')
   end
 end
