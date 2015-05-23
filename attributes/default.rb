@@ -13,6 +13,7 @@ default['ownberry']['additional_packages'] = [
   'php5-gd',
   'php5-intl',
   'php5-mysql',
+  'php5-curl',
   'php5-cli'
 ]
 
