@@ -1,12 +1,12 @@
 # Description
 
-unusable test thing
+this is for testing only, though it should basically work
 
 # Requirements
 
 ## Platform:
 
-*No platforms defined*
+* Debian (= 7.8)
 
 ## Cookbooks:
 
@@ -41,12 +41,12 @@ unusable test thing
 
 # Recipes
 
-* ownberry::default - highly unusable test thing
+* ownberry::default - play around with chef
 
 # License and Maintainer
 
-Maintainer:: YOUR_NAME (YOUR_NAME)
+Maintainer:: wschiffels
 
-Copyright:: YEAR, YOUR_NAME
+Copyright:: 2015, wschiffels
 
 License::

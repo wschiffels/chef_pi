@@ -31,7 +31,6 @@ default['ownberry']['nginx']['certificate']['unit'] = 'unit 1'
 default['ownberry']['nginx']['certificate']['country'] = 'DE'
 # <> nginx attributes
 default['ownberry']['nginx']['root'] = '/var/www'
-#default['ownberry']['nginx']['oc-root'] = '/var/www/owncloud'
 default['ownberry']['nginx']['oc-root'] = '/var/www/owncloud/versions/current'
 default['ownberry']['nginx']['user'] = 'www-data'
 default['ownberry']['nginx']['group'] = 'www-data'
