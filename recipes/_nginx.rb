@@ -18,7 +18,7 @@ end
 
 #<> and for ssl_dhparam
 execute 'create dhparams.pem' do
-  command 'openssl dhparam -out /etc/ssl/private/dhparams.pem 2048'
+  command "openssl dhparam -out #{node['ownberry']['nginx']['dhparam']['path']} #{node['ownberry']['nginx']['dhparam']['bits']}"
   creates '/etc/ssl/private/dhparams.pem'
   action :run
 end

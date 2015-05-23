@@ -35,6 +35,8 @@ default['ownberry']['nginx']['root'] = '/var/www'
 default['ownberry']['nginx']['oc-root'] = '/var/www/owncloud/versions/current'
 default['ownberry']['nginx']['user'] = 'www-data'
 default['ownberry']['nginx']['group'] = 'www-data'
+default['ownberry']['nginx']['dhparam']['path'] = '/etc/ssl/certs/dhparams.pem'
+default['ownberry']['nginx']['dhparam']['bits'] = '2048'
 
 # <> owncloud things
 default['ownberry']['oc']['url'] = 'https://download.owncloud.org/community/'
@@ -42,5 +44,6 @@ default['ownberry']['oc']['filename'] = 'owncloud-8.0.3.zip'
 default['ownberry']['oc']['version'] = '8.0.3'
 default['ownberry']['oc']['config']['dbhost'] = '127.0.0.1'
 # <> defaults to admin/admin
+default['ownberry']['oc']['config']['dbuser'] = 'oc_admin'
 default['ownberry']['oc']['config']['dbpass'] = 'admin'
 default['ownberry']['oc']['config']['secret'] = 'ifionlyhadagoodsecret'
