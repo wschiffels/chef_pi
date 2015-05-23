@@ -12,7 +12,8 @@ default['chef_pi']['additional_packages'] = [
   'php5-fpm',
   'php5-gd',
   'php5-intl',
-  'php5-mysql'
+  'php5-mysql',
+  'php5-cli'
 ]
 
 # <> nginx upstream things
@@ -30,14 +31,15 @@ default['chef_pi']['nginx']['certificate']['unit'] = 'unit 1'
 default['chef_pi']['nginx']['certificate']['country'] = 'DE'
 # <> nginx attributes
 default['chef_pi']['nginx']['root'] = '/var/www'
-default['chef_pi']['nginx']['oc-root'] = '/var/www/owncloud'
+#default['chef_pi']['nginx']['oc-root'] = '/var/www/owncloud'
+default['chef_pi']['nginx']['oc-root'] = '/var/www/owncloud/versions/current'
 default['chef_pi']['nginx']['user'] = 'www-data'
 default['chef_pi']['nginx']['group'] = 'www-data'
 
 # <> owncloud things
 default['chef_pi']['oc']['url'] = 'https://download.owncloud.org/community/'
-default['chef_pi']['oc']['filename'] = 'owncloud-8.0.2.tar.bz2'
-default['chef_pi']['oc']['version'] = '8.0.2'
+default['chef_pi']['oc']['filename'] = 'owncloud-8.0.3.zip'
+default['chef_pi']['oc']['version'] = '8.0.3'
 default['chef_pi']['oc']['config']['dbhost'] = '127.0.0.1'
 # <> defaults to admin/admin
 default['chef_pi']['oc']['config']['dbpass'] = 'admin'
