@@ -1,6 +1,6 @@
 # Description
 
-this is for testing only, though it should basically work
+installs nginx, php-fpm and owncloud. This is for testing only, though it should basically work
 
 # Requirements
 
@@ -41,12 +41,20 @@ this is for testing only, though it should basically work
 
 # Recipes
 
-* ownberry::default - play around with chef
+* ownberry::default - includes all recipes
+* ownberry::_database - install mysql, setup oc database
+* [ownberry::_nginx](#ownberry_nginx) - install nginx, configure ov vhost, create self-signed certificate
+* ownberry::_packages - install additional packages
+* ownberry::_stuff - unrelated things
+
+## ownberry::_nginx
+
+and for ssl_dhparam
 
 # License and Maintainer
 
-Maintainer:: wschiffels
+Maintainer:: YOUR_NAME (YOUR_NAME)
 
-Copyright:: 2015, wschiffels
+Copyright:: YEAR, YOUR_NAME
 
 License::
