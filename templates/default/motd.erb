@@ -1,4 +1,4 @@
-[34m++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++[0m
+[36m++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++[0m
 [1;37mHOST[0m              - hostname / primary IP    <%= node['fqdn'] %> / <%= node['ipaddress'] %>
 [0m                    platform / version       <%= node['platform'] %> / <%= node['platform_version'] %>
 <% if @hardware %>
@@ -9,5 +9,4 @@
 <% end %>
 [1;37mCHEF[0m              - last chef run            <%= Time.now.strftime('%Y-%m-%d %H:%M %z') %>
 [0m                    environment              <%= node.chef_environment %>
-[0m                    roles                    <%= node[:roles].empty? ? '-none-' : node[:roles].join(", ") %>
-[34m++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++[0m
+[36m++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++[0m
