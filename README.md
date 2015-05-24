@@ -1,7 +1,8 @@
 # Description
 
 to install chef on the raspberry run
-# install chef
+# install
+```bash
 apt-get install rubygems bundler
 gem install chef --version 11.18.12
 ```
