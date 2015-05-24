@@ -1,3 +1,13 @@
-----
-hostname <%= node['hostname']  %>
-----
+[34m++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++[0m
+[1;37mHOST[0m              - hostname / primary IP    <%= node['fqdn'] %> / <%= node['ipaddress'] %>
+[0m                    platform / version       <%= node['platform'] %> / <%= node['platform_version'] %>
+<% if @hardware %>
+[1;37mHARDWARE[0m          - type                     <%= hardware['type']  %>
+<% end %>
+<% if @virtualization %>
+[1;37mVIRTUALIZATION[0m    - type                     <%= virtualization['type'] %>
+<% end %>
+[1;37mCHEF[0m              - last chef run            <%= Time.now.strftime('%Y-%m-%d %H:%M %z') %>
+[0m                    environment              <%= node.chef_environment %>
+[0m                    roles                    <%= node[:roles].empty? ? '-none-' : node[:roles].join(", ") %>
+[34m++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++[0m
