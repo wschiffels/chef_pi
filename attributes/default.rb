@@ -14,16 +14,21 @@ default['ownberry']['additional_packages'] = [
   'php5-intl',
   'php5-mysql',
   'php5-curl',
-  'php5-cli'
+  'php5-cli',
+  'redis-server',
+  'php5-redis'
 ]
 
 # <> nginx upstream things
 default['nginx']['version'] = '1.8.0'
+default['nginx']['default_site_enabled'] = false
+default['nginx']['gzip'] = 'on'
+
 # <> php socket
 default['ownberry']['php']['fastcgi_pass'] = 'unix:/var/run/php-fpm-www.sock'
 
 # <> SSL related attributes
-default['ownberry']['nginx']['server-name'] = 'foo.example.com'
+default['ownberry']['nginx']['server-name'] = '_'
 default['ownberry']['nginx']['cert-path'] = '/etc/ssl/certs'
 default['ownberry']['nginx']['ssl-cert'] = 'server.crt'
 default['ownberry']['nginx']['ssl-key'] = 'server.key'
@@ -36,14 +41,9 @@ default['ownberry']['nginx']['oc-root'] = '/var/www/owncloud/versions/current'
 default['ownberry']['nginx']['user'] = 'www-data'
 default['ownberry']['nginx']['group'] = 'www-data'
 default['ownberry']['nginx']['dhparam']['path'] = '/etc/ssl/certs/dhparams.pem'
-default['ownberry']['nginx']['dhparam']['bits'] = '2048'
+default['ownberry']['nginx']['dhparam']['bits'] = '1024'
 
 # <> owncloud things
 default['ownberry']['oc']['url'] = 'https://download.owncloud.org/community/'
-default['ownberry']['oc']['filename'] = 'owncloud-8.0.3.zip'
-default['ownberry']['oc']['version'] = '8.0.3'
-default['ownberry']['oc']['config']['dbhost'] = '127.0.0.1'
-# <> defaults to admin/admin
-default['ownberry']['oc']['config']['dbuser'] = 'oc_admin'
-default['ownberry']['oc']['config']['dbpass'] = 'admin'
-default['ownberry']['oc']['config']['secret'] = 'ifionlyhadagoodsecret'
+default['ownberry']['oc']['filename'] = 'owncloud-8.2.1.zip'
+default['ownberry']['oc']['version'] = '8.2.1'

@@ -1,3 +1,0 @@
-GRANT USAGE ON *.* TO '<%= node['ownberry']['oc']['config']['dbuser'] %>'@'localhost' IDENTIFIED BY PASSWORD '<%= hash_mysql_password node['ownberry']['oc']['config']['dbpass'] %>';
-GRANT USAGE ON *.* TO '<%= node['ownberry']['oc']['config']['dbuser'] %>'@'%' IDENTIFIED BY PASSWORD '<%= hash_mysql_password node['ownberry']['oc']['config']['dbpass'] %>';
-GRANT ALL PRIVILEGES ON `owncloud`.* TO '<%= node['ownberry']['oc']['config']['dbuser'] %>'@'%';

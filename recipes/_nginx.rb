@@ -23,6 +23,11 @@ execute 'create dhparams.pem' do
   action :run
 end
 
+#<> delete default vhost
+file '/etc/nginx/conf.d/default' do
+  action :delete
+end
+
 #<> create nginx vhost
 template '/etc/nginx/sites-available/owncloud' do
   source 'nginx_oc.erb'
@@ -33,8 +38,8 @@ template '/etc/nginx/sites-available/owncloud' do
 end
 
 #<> activate vhost
-link '/etc/nginx/sites-enabled/owncloud' do
-  to '/etc/nginx/sites-available/owncloud'
+nginx_site 'owncloud' do
+  enable true
   not_if { ::File.exist?('/etc/nginx/sites-enabled/owncloud') }
   notifies :reload, 'service[nginx]', :immediately
 end
