@@ -9,7 +9,7 @@ recipe 'ownberry::_database', 'install mysql, setup oc database'
 recipe 'ownberry::_nginx', 'install nginx, configure ov vhost, create self-signed certificate'
 recipe 'ownberry::_packages', 'install additional packages'
 recipe 'ownberry::_stuff', 'unrelated things'
-supports 'debian', '= 7.8'
+supports 'debian', '= 8.0'
 
 depends 'mysqld'
 depends 'nginx'

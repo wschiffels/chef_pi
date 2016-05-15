@@ -45,5 +45,5 @@ default['ownberry']['nginx']['dhparam']['bits'] = '1024'
 
 # <> owncloud things
 default['ownberry']['oc']['url'] = 'https://download.owncloud.org/community/'
-default['ownberry']['oc']['filename'] = 'owncloud-8.2.1.zip'
-default['ownberry']['oc']['version'] = '8.2.1'
+default['ownberry']['oc']['version'] = '9.0.2'
+default['ownberry']['oc']['filename'] = "owncloud-#{node['ownberry']['oc']['version']}.zip"
