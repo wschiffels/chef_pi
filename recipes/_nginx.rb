@@ -45,7 +45,7 @@ nginx_site 'owncloud' do
 end
 
 #<> create fpm pool
-php_fpm_pool "www" do
-  process_manager "dynamic"
+php_fpm_pool 'www' do
+  process_manager 'dynamic'
   php_options 'php_admin_flag[log_errors]' => 'Off', 'php_admin_value[default_charset]' => 'UTF-8'
 end

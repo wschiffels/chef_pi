@@ -9,13 +9,13 @@
 
 #<> edit motd
 file '/var/run/motd' do
-  action :delete
   only_if { File.exist?('/var/run/motd') }
+  action :delete
 end
 
 link '/etc/motd' do
-  action :delete
   only_if { ::File.symlink?('/etc/motd') }
+  action :delete
 end
 
 template '/etc/motd' do

@@ -7,14 +7,15 @@ driver:
   network:
     - ["forwarded_port", {guest: 80, host: 8080}]
     - ["forwarded_port", {guest: 443, host: 4433}]
-
 provisioner:
   name: chef_solo
-
+  chef_omnibus_install_options: "-d /tmp/vagrant-cache/vagrant_omnibus"
+  chef_omnibus_url: "https://www.chef.io/chef/install.sh"
+verifier:
+  name: inspec
+  format: documentation
 platforms:
-  - name: debian-8.0
-#  - name: centos-6.5
-
+  - name: debian-8.5
 suites:
   - name: default
     run_list:

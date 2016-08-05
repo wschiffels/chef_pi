@@ -20,7 +20,7 @@ default['ownberry']['additional_packages'] = [
 ]
 
 # <> nginx upstream things
-default['nginx']['version'] = '1.8.0'
+default['nginx']['version'] = '1.10.1'
 default['nginx']['default_site_enabled'] = false
 default['nginx']['gzip'] = 'on'
 
@@ -45,5 +45,5 @@ default['ownberry']['nginx']['dhparam']['bits'] = '1024'
 
 # <> owncloud things
 default['ownberry']['oc']['url'] = 'https://download.owncloud.org/community/'
-default['ownberry']['oc']['version'] = '9.0.2'
+default['ownberry']['oc']['version'] = '9.1.0'
 default['ownberry']['oc']['filename'] = "owncloud-#{node['ownberry']['oc']['version']}.zip"

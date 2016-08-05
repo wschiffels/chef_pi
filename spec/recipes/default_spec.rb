@@ -4,11 +4,6 @@ require_relative '../spec_helper'
 describe 'ownberry::default' do
   let(:chef_run) { ChefSpec::SoloRunner.new.converge(described_recipe) }
 
-  before do
-    stub_command("which nginx").and_return('/usr/sbin/nginx')
-    stub_command("test -d /etc/php-fpm.d || mkdir -p /etc/php-fpm.d").and_return(0)
-  end
-
   it 'includes _stuff recipe' do
     expect(chef_run).to include_recipe('ownberry::_stuff')
   end
@@ -47,5 +42,28 @@ describe 'ownberry::default' do
 
   it 'installes php5-fpm' do
     expect(chef_run).to install_package('php5-fpm')
+  end
+
+  it 'creates /etc/motd from template' do
+    expect(chef_run).to create_template('/etc/motd')
+  end
+
+  it 'runs a execute to update deb cache' do
+    expect(chef_run).to run_execute('update cache')
+  end
+
+  it 'installs php' do
+    expect(chef_run).to install_package('php5-gd')
+    expect(chef_run).to install_package('php5-intl')
+    expect(chef_run).to install_package('php5-mysql')
+    expect(chef_run).to install_package('php5-redis')
+  end
+
+  it 'installs redis-server' do
+    expect(chef_run).to install_package('redis-server')
+  end
+
+  it 'installs vim-common' do
+    expect(chef_run).to install_package('vim-common')
   end
 end
