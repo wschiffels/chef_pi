@@ -28,22 +28,6 @@ describe 'ownberry::default' do
     expect(chef_run).to install_package('vim')
   end
 
-  it 'installes php5-common' do
-    expect(chef_run).to install_package('php5-common')
-  end
-
-  it 'installes php5-cli' do
-    expect(chef_run).to install_package('php5-cli')
-  end
-
-  it 'installes php5-curl' do
-    expect(chef_run).to install_package('php5-curl')
-  end
-
-  it 'installes php5-fpm' do
-    expect(chef_run).to install_package('php5-fpm')
-  end
-
   it 'creates /etc/motd from template' do
     expect(chef_run).to create_template('/etc/motd')
   end
@@ -53,6 +37,10 @@ describe 'ownberry::default' do
   end
 
   it 'installs php' do
+    expect(chef_run).to install_package('php5-common')
+    expect(chef_run).to install_package('php5-cli')
+    expect(chef_run).to install_package('php5-curl')
+    expect(chef_run).to install_package('php5-fpm')
     expect(chef_run).to install_package('php5-gd')
     expect(chef_run).to install_package('php5-intl')
     expect(chef_run).to install_package('php5-mysql')
@@ -63,7 +51,34 @@ describe 'ownberry::default' do
     expect(chef_run).to install_package('redis-server')
   end
 
+  it 'installs postfix' do
+    expect(chef_run).to install_package('postfix')
+  end
+
   it 'installs vim-common' do
     expect(chef_run).to install_package('vim-common')
+  end
+
+  it 'deletes /var/run/motd' do
+    allow(File).to receive(:exist?)
+      .and_call_original
+    allow(File).to receive(:exist?)
+      .with('/var/run/motd')
+      .and_return(true)
+    expect(chef_run).to delete_file('/var/run/motd')
+  end
+  it 'deletes /etc/motd symlink' do
+    allow(File).to receive(:symlink?)
+      .and_call_original
+    allow(File).to receive(:symlink?)
+      .and_return(true)
+    expect(chef_run).to delete_link('/etc/motd')
+  end
+
+  it 'creates /etc&profile.d/aliases.sh' do
+    expect(chef_run).to create_template('/etc/profile.d/aliases.sh').with(
+      user:   'root',
+      group:  'root'
+    )
   end
 end
